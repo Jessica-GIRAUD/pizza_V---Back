@@ -3,7 +3,10 @@ require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
 const app = express();
-const path = require("path");
+
+const cookieParser = require("cookie-parser");
+const connection = require("./db");
+const { verifyJWT } = require("./middlewares/jwt");
 
 const { PORT } = process.env;
 
@@ -19,12 +22,30 @@ app.use(
   })
 );
 
+// middleware for cookies
+app.use(cookieParser());
+
 // routes
-app.get("/", (req, res) => {
-  res.send("Pizza Vera<");
+
+// get all pizzas
+app.get("/pizzas", (req, res) => {
+  const query =
+    "SELECT p.idpizza, p.name, p.description, p.price, base.name AS base_name FROM pizza p LEFT JOIN base ON base_idbase = base.idBase";
+  connection.query(query, [], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error while getting pizzas");
+    }
+    if (result) {
+      return res.status(200).json(result);
+    }
+  });
 });
+
+app.use("/auth", require("./routes/auth"));
+app.use("/refresh", require("./routes/refresh"));
+app.use(verifyJWT);
 app.use("/pizzas", require("./routes/pizzas"));
-app.use("/admin", require("./routes/admin"));
 
 app.use(function (req, res, next) {
   var err = new Error("Not Found");
