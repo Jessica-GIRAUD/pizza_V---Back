@@ -25,7 +25,7 @@ const logout = async (req, res) => {
       }
     }
   );
-  res.clearCookie("token", { httpOnly: true, sameSite: "None", secure: true });
+  res.clearCookie("token", { httpOnly: true });
   res.sendStatus(204); // No content to send back
 };
 

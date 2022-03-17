@@ -22,7 +22,15 @@ const refreshToken = (req, res) => {
           const accessToken = sign({ user: decoded.user.email }, SECRET_KEY, {
             expiresIn: "1h",
           });
-          res.json({ accessToken });
+          res.status(200).send({
+            loggedIn: true,
+            accessToken,
+            user: {
+              firstname: user.firstname,
+              lastname: user.lastname,
+              email: user.email,
+            },
+          });
         });
       }
     }

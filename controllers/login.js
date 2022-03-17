@@ -56,8 +56,6 @@ const login = async (req, res) => {
         res.cookie("token", refreshedToken, {
           maxAge: 24 * 60 * 60 * 1000,
           httpOnly: true,
-          sameSite: "None",
-          secure: true,
         });
 
         // send access token to front end
