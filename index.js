@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
@@ -27,25 +27,14 @@ app.use(cookieParser());
 
 // routes
 
-// get all pizzas
-app.get("/pizzas", (req, res) => {
-  const query =
-    "SELECT p.idpizza, p.name, p.description, p.price, base.name AS base_name FROM pizza p LEFT JOIN base ON base_idbase = base.idBase";
-  connection.query(query, [], (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error while getting pizzas");
-    }
-    if (result) {
-      return res.status(200).json(result);
-    }
-  });
-});
-
+app.use("/", require("./routes/globals"));
 app.use("/auth", require("./routes/auth"));
 app.use("/refresh", require("./routes/refresh"));
 app.use(verifyJWT);
 app.use("/pizzas", require("./routes/pizzas"));
+app.use("/actus", require("./routes/actus"));
+app.use("/contact", require("./routes/contacts"));
+app.use("/profile", require("./routes/profiles"));
 
 app.use(function (req, res, next) {
   var err = new Error("Not Found");

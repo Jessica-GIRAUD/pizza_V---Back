@@ -5,7 +5,7 @@ const logout = require("../controllers/logout");
 const register = require("../controllers/register");
 const { verifyJWT } = require("../middlewares/jwt");
 
-router.post("/register", verifyJWT, register);
+router.post("/register", register);
 router.post("/login", login);
 router.get("/logout", logout);
 

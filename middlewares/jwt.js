@@ -21,7 +21,7 @@ const refreshJWT = (user) => {
 const verifyJWT = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   if (!authHeader) return res.sendStatus(401);
-  console.log(authHeader); // Bearer token
+  // console.log(authHeader); // Bearer token
   const token = authHeader.split(" ")[1];
   verify(token, SECRET_KEY, (err, decoded) => {
     if (err) return res.sendStatus(403); //invalid token

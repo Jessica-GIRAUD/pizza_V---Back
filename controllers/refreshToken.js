@@ -26,6 +26,7 @@ const refreshToken = (req, res) => {
             loggedIn: true,
             accessToken,
             user: {
+              id: user.id,
               firstname: user.firstname,
               lastname: user.lastname,
               email: user.email,
