@@ -42,6 +42,6 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT || 3000, () => {
   console.log(`Server listening on port ${PORT}`);
 });
