@@ -4,8 +4,10 @@ const {
   getAllContacts,
   getAllPizzas,
   getAllActus,
+  getWelcome
 } = require("../controllers/global");
 
+router.get("/", getWelcome);
 router.get("/contact", getAllContacts);
 router.get("/pizzas", getAllPizzas);
 router.get("/actus", getAllActus);

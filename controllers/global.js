@@ -49,8 +49,13 @@ const getAllActus = (req, res) => {
   );
 };
 
+const getWelcome = (req, res) => {
+  res.send("Welcome on Pizza Kika Website");
+};
+
 module.exports = {
   getAllContacts,
   getAllPizzas,
   getAllActus,
+  getWelcome,
 };
