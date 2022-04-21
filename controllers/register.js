@@ -23,6 +23,7 @@ const register = (req, res) => {
       } else if (password !== confirmedPassword) {
         return res.status(409).send({
           message: "Les mots de passe doivent être identiques.",
+          input: "password",
         });
         // else (if everything is ok), bcrypt password
       } else {
