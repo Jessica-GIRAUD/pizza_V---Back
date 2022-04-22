@@ -18,7 +18,7 @@ const login = async (req, res) => {
     [email],
     (err, result) => {
       if (err) {
-        return res.status(400).send({
+        return res.status(500).send({
           message: err,
         });
       }
