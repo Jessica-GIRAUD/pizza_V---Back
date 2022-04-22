@@ -11,7 +11,7 @@ const getProfile = (req, res) => {
       res
         .status(500)
         .send(
-          "Une erreur est survenue lors de la récupération de l'utilisateur"
+          "Une erreur est survenue lors de la récupération de l'utilisateur, contactez votre administrateur."
         );
     }
     if (result) {
@@ -40,7 +40,7 @@ const updateProfile = (req, res) => {
         res
           .status(500)
           .send(
-            "Une erreur est survenue lors de la récupération de l'utilisateur"
+            "Une erreur est survenue lors de la récupération de l'utilisateur, contactez votre administrateur."
           );
       }
       if (result && password && confirmedPassword && newPassword) {
@@ -68,7 +68,7 @@ const updateProfile = (req, res) => {
                     res
                       .status(500)
                       .send(
-                        "Une erreur est survenue lors de la modification du profile."
+                        "Une erreur est survenue lors de la modification du profil, contactez votre administrateur."
                       );
                   }
                   if (result) {
@@ -95,7 +95,7 @@ const updateProfile = (req, res) => {
               res
                 .status(500)
                 .send(
-                  "Une erreur est survenue lors de la modification du profile"
+                  "Une erreur est survenue lors de la modification du profil, contactez votre administrateur."
                 );
             }
             if (result) {

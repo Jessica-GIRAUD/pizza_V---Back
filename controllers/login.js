@@ -19,7 +19,7 @@ const login = async (req, res) => {
     (err, result) => {
       if (err) {
         return res.status(500).send({
-          message: err,
+          message: "Une erreur est survenue lors de l'authentification, contactez votre administrateur.",
         });
       }
       // if there is no user with this email return feedback

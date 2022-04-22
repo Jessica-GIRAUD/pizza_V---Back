@@ -6,7 +6,9 @@ const getAllContacts = (req, res) => {
       console.log(err);
       res
         .status(500)
-        .send("Une erreur est survenue lors de la récupération des contacts");
+        .send(
+          "Une erreur est survenue lors de la récupération des contacts, contactez votre administrateur."
+        );
     }
     if (result) {
       return res.status(200).json(result);
@@ -20,7 +22,11 @@ const getAllPizzas = (req, res) => {
   connection.query(query, [], (err, result) => {
     if (err) {
       console.log(err);
-      res.status(500).send("Error while getting pizzas");
+      res
+        .status(500)
+        .send(
+          "Une erreur est survenue lors de la récupération des pizzas, contactez votre administrateur."
+        );
     }
     if (result) {
       return res.status(200).json(result);
@@ -39,7 +45,7 @@ const getAllActus = (req, res) => {
         res
           .status(500)
           .send(
-            "Une erreur est survenue lors de la récupération des actualités"
+            "Une erreur est survenue lors de la récupération des actualités, contactez votre administrateur."
           );
       }
       if (result) {
@@ -50,7 +56,7 @@ const getAllActus = (req, res) => {
 };
 
 const getWelcome = (req, res) => {
-  res.send("Welcome on Pizza Kika Website");
+  res.send("Bienvenue sur le serveur du site de Pizza Kika !");
 };
 
 module.exports = {
