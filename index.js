@@ -1,8 +1,6 @@
 require("dotenv").config();
 
 const cors = require("cors");
-const corsOptions = require("./config/corsOptions");
-const credentials = require("./middlewares/credentials");
 
 const express = require("express");
 const app = express();
@@ -12,12 +10,8 @@ const { verifyJWT } = require("./middlewares/jwt");
 
 const { PORT } = process.env;
 
-// Handle options credentials check - before CORS!
-// and fetch cookies credentials requirement
-app.use(credentials);
-
 // Cross Origin Resource Sharing
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 
