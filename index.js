@@ -9,7 +9,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const connection = require("./db");
 const { verifyJWT } = require("./middlewares/jwt");
-const credentials = require("./middleware/credentials");
+const credentials = require("./middlewares/credentials");
 
 const { PORT } = process.env;
 
@@ -29,7 +29,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 // routes
-
 app.use("/", require("./routes/globals"));
 app.use("/auth", require("./routes/auth"));
 app.use("/refresh", require("./routes/refresh"));
