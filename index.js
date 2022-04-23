@@ -10,12 +10,12 @@ const { verifyJWT } = require("./middlewares/jwt");
 
 const { PORT } = process.env;
 
-app.use(cors());
 app.use(express.json());
 
 // Parse URL-encoded bodies (as send by HTML forms)
 app.use(express.urlencoded({ extended: false }));
 
+app.use(cors());
 /* app.use(
   cors({
     origin: [
