@@ -15,7 +15,18 @@ app.use(express.json());
 // Parse URL-encoded bodies (as send by HTML forms)
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
+app.use(
+  cors({
+    origin: ["https://pizza-kika.netlify.app", "http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 // middleware for cookies
 app.use(cookieParser());
