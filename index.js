@@ -14,6 +14,8 @@ const corsOptions = {
   origin: "https://pizza-kika.netlify.app",
   credentials: true, //access-control-allow-credentials:true
   optionsSuccessStatus: 200,
+  methods: "GET,PUT,POST,OPTIONS",
+  allowedHeaders: "Content-Type,Authorization",
 };
 
 app.use(cors(corsOptions)); // Use this after the variable declaration
