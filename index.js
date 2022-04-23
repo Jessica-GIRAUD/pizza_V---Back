@@ -16,7 +16,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: ["https://pizza-kika.herokuapp.com"],
+    origin: [
+      "http://localhost:3000",
+      "https://pizza-kika.netlify.app",
+      "https://pizza-kika.herokuapp.com",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
