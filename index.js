@@ -10,12 +10,14 @@ const { verifyJWT } = require("./middlewares/jwt");
 
 const { PORT } = process.env;
 
+app.use(cors());
 app.use(express.json());
 
 // Parse URL-encoded bodies (as send by HTML forms)
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  cors(/* {
+
+/* app.use(
+  cors({
     origin: [
       "http://localhost:3000",
       "https://pizza-kika.netlify.app",
@@ -23,8 +25,8 @@ app.use(
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
-  } */)
-);
+  } )
+);*/
 
 // middleware for cookies
 app.use(cookieParser());
