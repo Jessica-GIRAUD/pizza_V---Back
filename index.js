@@ -10,17 +10,12 @@ const { verifyJWT } = require("./middlewares/jwt");
 
 const { PORT } = process.env;
 
-const whitelist = ["https://pizza-kika.netlify.app", "http://localhost:3000"];
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
+  origin: "https://pizza-kika.netlify.app",
+  credentials: true, //access-control-allow-credentials:true
+  optionsSuccessStatus: 200,
 };
+
 app.use(cors(corsOptions));
 
 app.use(express.json());
