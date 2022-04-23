@@ -11,9 +11,9 @@ const { verifyJWT } = require("./middlewares/jwt");
 const { PORT } = process.env;
 
 const corsOptions = {
-  origin: "*",
+  origin: "https://pizza-kika.netlify.app",
   credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions)); // Use this after the variable declaration
