@@ -23,11 +23,6 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
-
 // middleware for cookies
 app.use(cookieParser());
 
