@@ -1,34 +1,29 @@
 require("dotenv").config();
 
 const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
+
 const express = require("express");
 const app = express();
 
 const cookieParser = require("cookie-parser");
 const connection = require("./db");
 const { verifyJWT } = require("./middlewares/jwt");
+const credentials = require("./middleware/credentials");
 
 const { PORT } = process.env;
 
-app.use(express.json());
+// Handle options credentials check - before CORS!
+// and fetch cookies credentials requirement
+app.use(credentials);
+
+// Cross Origin Resource Sharing
+app.use(cors(corsOptions));
 
 // Parse URL-encoded bodies (as send by HTML forms)
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors());
-
-// Add Access Control Allow Origin headers
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://pizza-kika.netlify.app"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(express.json());
 
 // middleware for cookies
 app.use(cookieParser());
