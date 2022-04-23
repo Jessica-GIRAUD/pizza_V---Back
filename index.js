@@ -15,7 +15,7 @@ app.use(express.json());
 // Parse URL-encoded bodies (as send by HTML forms)
 app.use(express.urlencoded({ extended: false }));
 app.use(
-  cors({
+  cors(/* {
     origin: [
       "http://localhost:3000",
       "https://pizza-kika.netlify.app",
@@ -23,7 +23,7 @@ app.use(
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
-  })
+  } */)
 );
 
 // middleware for cookies
