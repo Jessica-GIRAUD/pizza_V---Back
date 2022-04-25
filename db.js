@@ -10,12 +10,6 @@ const config = {
   password: DB_PASSWORD,
   database: DB_NAME,
 };
-const connection = mysql.createConnection(config);
-
-connection.connect((error) => {
-  if (error) {
-    console.log(error);
-  } else console.log("Database connected");
-});
+const connection = mysql.createPool(config);
 
 module.exports = connection;
