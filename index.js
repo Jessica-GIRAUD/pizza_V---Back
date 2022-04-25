@@ -10,7 +10,13 @@ const { verifyJWT } = require("./middlewares/jwt");
 
 const { PORT } = process.env;
 
-app.use(cors({ origin: "https://pizza-kika.netlify.app", credentials: true }));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://pizza-kika.netlify.app"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
