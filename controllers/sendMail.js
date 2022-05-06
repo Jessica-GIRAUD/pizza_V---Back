@@ -1,4 +1,4 @@
-const { GMAIL_PASSWORD, GMAIL_EMAIL, CLIENT_URL } = process.env;
+const { GMAIL_PASSWORD, GMAIL_EMAIL } = process.env;
 const mailContent = require("./mailContent");
 const nodemailer = require("nodemailer");
 
@@ -11,7 +11,7 @@ const sendEmail = (email, token) => {
       pass: GMAIL_PASSWORD, // Your password
     },
   });
-  const emailContent = mailContent(token, CLIENT_URL);
+  const emailContent = mailContent(token);
 
   const mailOptions = {
     from: GMAIL_EMAIL,

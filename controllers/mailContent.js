@@ -1,4 +1,4 @@
-const MailContent = (token, url) => {
+const MailContent = (token) => {
   return ` <div>
       <p style="padding-top: 20px; color: black;">Bonjour,</p>
       <p>
@@ -10,7 +10,7 @@ const MailContent = (token, url) => {
         lien ci-dessous :
       </p>
       <a
-        href={${url}/admin/resetpassword/${token}}
+        href={https://pizza-kika.netlify.app/admin/resetpassword/${token}}
         style="display: flex;
             width: fit-content;
             margin: 30px auto;
@@ -23,6 +23,8 @@ const MailContent = (token, url) => {
       >
         Je choisis un nouveau mot de passe
       </a>
+      <p>Ou de copier-coller le lien suivant :
+      https://pizza-kika.netlify.app/admin/resetpassword/${token} </p>
       <p>
         Ce lien expirera dans 15 minutes, utilisez-le dès que possible. Passé ce
         délai, il faudra faire une nouvelle demande de mot de passe.
