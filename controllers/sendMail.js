@@ -25,8 +25,7 @@ const sendEmail = (email, token) => {
       console.log("error", error);
       return error;
     } else {
-      console.log("Email correctement envoyé.");
-      return 0;
+      return res.status(200).send("Email correctement envoyé.");
     }
   });
 };
