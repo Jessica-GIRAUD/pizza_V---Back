@@ -1,7 +1,7 @@
 const MailContent = (token) => {
-  return `<div style="background-color:#f6f6f6; width:100%; height:100vh;" >
-            <div style="background-color:#ffffff; width:90%; margin: 20px auto;">
-              <p style="padding-top: 20px; color: black;">Bonjour,</p>
+  return `<div style="background-color:#f6f6f6; width:100%; height:100vh; padding-top:30px;">
+            <div style="background-color:#ffffff; width:90%; margin:auto; padding: 30px;">
+              <p>Bonjour,</p>
               <p>
                 Vous avez oublié votre mot de passe pour accéder à votre espace
                 administrateur Pizza Kika.
@@ -12,7 +12,7 @@ const MailContent = (token) => {
               </p>
 
               <a
-                href="pizza-kika.netlify.app/admin/resetpassword/${token}"
+                href="https://pizza-kika.netlify.app/admin/resetpassword/${token}"
                 style="display: flex;
                     width: fit-content;
                     margin: 30px auto;
@@ -32,7 +32,7 @@ const MailContent = (token) => {
               </p>
               <p>À tout de suite ! </p>
               <p>Votre adminitratrice </p>
-            <div>
+            </div>
           </div> `;
 };
 
