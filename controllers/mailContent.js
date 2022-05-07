@@ -1,6 +1,6 @@
 const MailContent = (token) => {
-  return `<div style="background-color:#f6f6f6; width:100%;" >
-            <div style="background-color:#ffffff; width:90%; margin:20px auto;">
+  return `<div style="background-color:#f6f6f6; width:100%; height:100vh;" >
+            <div style="background-color:#ffffff; width:90%; margin: 20px auto;">
               <p style="padding-top: 20px; color: black;">Bonjour,</p>
               <p>
                 Vous avez oublié votre mot de passe pour accéder à votre espace
