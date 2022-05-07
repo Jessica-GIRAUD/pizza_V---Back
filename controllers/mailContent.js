@@ -2,6 +2,7 @@ const MailContent = (token) => {
   return `<div style="background-color:#f6f6f6; width:100%; height:100vh; padding-top:30px;">
             <div style="background-color:#ffffff; width:80%; margin:auto; padding: 30px;">
               <p style="font-weight: bold;">Bonjour,</p>
+              </br>
               <p>
                 Vous avez oublié votre mot de passe pour accéder à votre espace
                 administrateur Pizza Kika.
@@ -31,9 +32,7 @@ const MailContent = (token) => {
                 délai, il faudra faire une nouvelle demande de mot de passe.
               </p>
               </br>
-              </br>
               <p>À tout de suite ! </p>
-              </br>
               </br>
               <p>Votre adminitratrice </p>
             </div>
