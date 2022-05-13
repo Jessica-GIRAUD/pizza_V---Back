@@ -29,7 +29,7 @@ const forgotPassword = (req, res) => {
           expiresIn: "15m",
         });
 
-        const sentMail = sendEmail(email, accessToken);
+        const sentMail = sendEmail(email, accessToken, user.firstname);
 
         if (sentMail !== "0") {
           const query = "UPDATE users SET refreshToken = ? WHERE email = ?";
