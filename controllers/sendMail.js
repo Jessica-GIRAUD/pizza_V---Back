@@ -1,5 +1,5 @@
 const { GMAIL_PASSWORD, GMAIL_EMAIL } = process.env;
-const mailContent = require("./mailContent");
+const mailContent = require("./EmailTemplate/mailContent");
 const nodemailer = require("nodemailer");
 
 // send email

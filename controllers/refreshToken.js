@@ -19,7 +19,7 @@ const refreshToken = (req, res) => {
         verify(refreshToken, REFRESH_KEY, (err, decoded) => {
           if (err || user.email !== decoded.user)
             return res.status(403).send(err);
-          const accessToken = sign({ user: decoded.user.email }, SECRET_KEY, {
+          const accessToken = sign({ user: decoded.email }, SECRET_KEY, {
             expiresIn: "1h",
           });
           res.status(200).send({

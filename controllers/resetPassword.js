@@ -1,24 +1,33 @@
 const connection = require("../db");
 const bcrypt = require("bcrypt");
+const { RESET_KEY } = process.env;
 
 const resetPassword = (req, res) => {
   const { confirmedPassword, password, token } = req.body;
+
   connection.query(
-    "SELECT * FROM users WHERE refreshToken = ?",
+    "SELECT * FROM users WHERE refreshToken = ?;",
     [token],
-    async (err, results) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send({ message: err.message });
-      }
-      // if result.length = 0, token expired or does'nt exist
-      if (results.length === 0) {
-        // 409 => conflicts
-        return res.status(401).send({
-          message: "Le lien utilisé n'est plus valide. Veuillez réessayer.",
+    (err, result) => {
+      if (error) {
+        return res.status(500).send({
+          message:
+            "Un problème est survenu lors de la vérification du token, contactez votre administrateur.",
         });
-      } else {
+      }
+
+      const user = result[0];
+
+      verify(token, RESET_KEY, async (err, decoded) => {
+        if (err || user.email !== decoded.user) {
+          // if err, token expired or not exists
+          return res.status(401).send({
+            message: "Le lien utilisé n'est plus valide. Veuillez réessayer.",
+          });
+        }
+
         if (password !== confirmedPassword) {
+          // 409 => conflicts
           return res.status(409).send({
             message: "Les mots de passe doivent être identiques.",
             input: "password",
@@ -29,7 +38,7 @@ const resetPassword = (req, res) => {
           const query = "UPDATE users SET passwordHash = ?  WHERE email = ?";
           connection.query(
             query,
-            [hashedPassword, results[0].email],
+            [hashedPassword, user.email],
             (error, results) => {
               if (error) {
                 console.log("error:", error);
@@ -42,7 +51,7 @@ const resetPassword = (req, res) => {
             }
           );
         }
-      }
+      });
     }
   );
 };
