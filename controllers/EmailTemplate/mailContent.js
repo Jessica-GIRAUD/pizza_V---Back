@@ -66,7 +66,7 @@ const MailContent = (token, name) => {
   
     <body>
       <div class="container">
-        <img src="./part.jpg" alt="part" class="deco" />
+        <img src="https://pizza-kika.netlify.app/static/media/part.95465ab64ebe78295bf0.jpg" alt="part" class="deco" />
         <div class="content">
           <p>Bonjour ${name},</p>
           <p class="corps">
