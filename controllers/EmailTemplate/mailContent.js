@@ -16,18 +16,19 @@ const MailContent = (token, name) => {
         }
   
         .deco {
-          background-image: url("./part.png");
-          background-size: cover;
+          width: 100%;
           height: 250px;
-          width: 70%;
           margin: 0 auto;
-          padding: 30px;
+          object-fit: cover;
         }
   
-        .content {
+        .container {
           background-color: #ffffffe1;
           width: 70%;
           margin: auto;
+        }
+  
+        .content {
           padding: 10px 30px;
         }
   
@@ -46,12 +47,13 @@ const MailContent = (token, name) => {
         }
   
         .link:visited,
-        a {
+        a:visited,
+        .txt {
           color: #ffffffe1;
         }
   
         .link:hover,
-        a {
+        a:hover {
           box-shadow: 1px 1px 4px #ff6233, -3px -1px 4px #2e5227;
         }
   
@@ -63,7 +65,8 @@ const MailContent = (token, name) => {
     </head>
   
     <body>
-      <div class="deco">
+      <div class="container">
+        <img src="./part.jpg" alt="part" class="deco" />
         <div class="content">
           <p>Bonjour ${name},</p>
           <p class="corps">
@@ -79,7 +82,7 @@ const MailContent = (token, name) => {
             class="link"
             href="https://pizza-kika.netlify.app/admin/resetpassword/${token}"
           >
-            Je choisis un nouveau mot de passe
+            <strong class="txt">Je choisis un nouveau mot de passe</strong>
           </a>
   
           <p>
@@ -93,8 +96,8 @@ const MailContent = (token, name) => {
         </div>
       </div>
     </body>
-  </html>  
-  `;
+  </html>
+    `;
 };
 
 module.exports = MailContent;
