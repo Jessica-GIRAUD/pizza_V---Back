@@ -17,7 +17,6 @@ const MailContent = (token, name) => {
   
         .deco {
           width: 100%;
-          height: 250px;
           margin: 0 auto;
           object-fit: cover;
         }
@@ -61,39 +60,18 @@ const MailContent = (token, name) => {
         .corps {
           margin-top: 30px;
         }
-
-        .img-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-  
-        .img {
-          position: absolute;
-          max-height: 200px;
-          margin: auto;
-        }
-        
       </style>
     </head>
   
     <body>
       <div class="container">
-      <div class="img-container">
         <img
-          src="https://pizza-kika.netlify.app/static/media/part.95465ab64ebe78295bf0.jpg"
+          src="https://i.ibb.co/LNDbD6M/Sans-titre-2.png"
           alt="part"
           class="deco"
         />
-
-        <img
-          src="https://pizza-kika.netlify.app/static/media/logo.85d0e83e5a6c9733425f.png"
-          alt="logo"
-          class="img"
-        />
-      </div>
-      
-      <div class="content">
+  
+        <div class="content">
           <p>Bonjour ${name},</p>
           <p class="corps">
             Vous avez oublié votre mot de passe pour accéder à votre espace
@@ -123,7 +101,7 @@ const MailContent = (token, name) => {
       </div>
     </body>
   </html>
-    `;
+  `;
 };
 
 module.exports = MailContent;
