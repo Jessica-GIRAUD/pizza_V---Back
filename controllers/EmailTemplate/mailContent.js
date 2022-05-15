@@ -60,6 +60,21 @@ const MailContent = (token, name) => {
         .corps {
           margin-top: 30px;
         }
+
+        @media only screen and (max-width: 915px) {
+          .deco {
+            width: 90% !important;
+          }
+            
+            .container {
+            width: 90% !important;
+          }
+
+          .content {
+            padding: 10px !important;
+          }
+        }
+
       </style>
     </head>
   
@@ -94,9 +109,9 @@ const MailContent = (token, name) => {
             ce délai, il faudra faire une nouvelle demande de mot de passe.
           </p>
   
-          <p>À tout de suite !</p>
+          <p>Bonne chance !</p>
   
-          <p class="admin">Votre adminitratrice</p>
+          <p class="admin">Votre adminitratrice, Jessica</p>
         </div>
       </div>
     </body>
