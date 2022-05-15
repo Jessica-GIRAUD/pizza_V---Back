@@ -4,6 +4,7 @@ const { RESET_KEY } = process.env;
 
 const resetPassword = (req, res) => {
   const { confirmedPassword, password, token } = req.body;
+  console.log("req.body", req.body);
 
   connection.query(
     "SELECT * FROM users WHERE refreshToken = ?;",
