@@ -1,4 +1,5 @@
 const connection = require("../db");
+const { verify } = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { RESET_KEY } = process.env;
 
