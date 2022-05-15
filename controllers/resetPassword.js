@@ -9,7 +9,7 @@ const resetPassword = (req, res) => {
   connection.query(
     "SELECT * FROM users WHERE refreshToken = ?;",
     [token],
-    (err, result) => {
+    (error, result) => {
       if (error) {
         return res.status(500).send({
           message:
