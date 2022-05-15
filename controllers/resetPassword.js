@@ -24,7 +24,9 @@ const resetPassword = (req, res) => {
         if (err || user.email !== decoded.user) {
           // if err, token expired or not exists
           return res.status(401).send({
-            message: "Le lien utilisé n'est plus valide. Veuillez réessayer.",
+            message:
+              "Le lien utilisé n'est plus valide. Veuillez effectuer une nouvelle demande de réinitialisation.",
+            input: "expired",
           });
         }
 
