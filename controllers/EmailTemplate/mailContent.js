@@ -12,8 +12,7 @@ const MailContent = (token, name) => {
           width: 100%;
           display: flex;
           flex-direction: column;
-          margin: 0;
-          height: 100vh;
+          margin: 20px 0 0 0;
         }
   
         .deco {
