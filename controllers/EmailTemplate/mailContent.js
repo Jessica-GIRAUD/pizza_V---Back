@@ -13,6 +13,7 @@ const MailContent = (token, name) => {
           display: flex;
           flex-direction: column;
           margin: 0;
+          height: 100vh;
         }
   
         .deco {
@@ -60,21 +61,6 @@ const MailContent = (token, name) => {
         .corps {
           margin-top: 30px;
         }
-
-        @media only screen and (max-width: 915px) {
-          .deco {
-            width: 90% !important;
-          }
-            
-            .container {
-            width: 90% !important;
-          }
-
-          .content {
-            padding: 10px !important;
-          }
-        }
-
       </style>
     </head>
   
@@ -109,13 +95,13 @@ const MailContent = (token, name) => {
             ce délai, il faudra faire une nouvelle demande de mot de passe.
           </p>
   
-          <p>Bonne chance !</p>
+          <p>À tout de suite !</p>
   
-          <p class="admin">Votre adminitratrice, Jessica</p>
+          <p class="admin">Votre adminitratrice</p>
         </div>
       </div>
     </body>
-  </html>
+  </html>  
   `;
 };
 
