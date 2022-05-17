@@ -11,10 +11,10 @@ const config = {
   database: DB_NAME,
 };
 
-var connection;
+let connection;
 
 function handleDisconnect() {
-  connection = mysql.createPool(config); // Recreate the connection, since
+  connection = mysql.createConnection(config); // Recreate the connection, since
   // the old one cannot be reused.
 
   connection.connect(function (err) {
@@ -39,5 +39,4 @@ function handleDisconnect() {
 }
 
 handleDisconnect();
-
 module.exports = connection;
