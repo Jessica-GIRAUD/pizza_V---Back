@@ -12,7 +12,11 @@ const { PORT } = process.env;
 
 app.use(
   cors({
-    origin: ["https://pizza-kika.netlify.app", "http://localhost:3000"],
+    origin: [
+      "https://pizza-kika.netlify.app",
+      "http://localhost:3000",
+      "https://pizza-kika-v2.netlify.app",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
