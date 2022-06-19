@@ -1,10 +1,11 @@
 const express = require("express");
+
 const router = express.Router();
 const {
   getAllContacts,
   getAllPizzas,
   getAllActus,
-  getWelcome
+  getWelcome,
 } = require("../controllers/global");
 
 router.get("/", getWelcome);

@@ -3,6 +3,7 @@ require("dotenv").config();
 const cors = require("cors");
 
 const express = require("express");
+
 const app = express();
 
 const cookieParser = require("cookie-parser");
@@ -22,10 +23,9 @@ app.use(
   })
 );
 
-app.use(express.json());
-
+app.use(express.json({ limit: "50mb" }));
 // Parse URL-encoded bodies (as send by HTML forms)
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 
 // middleware for cookies
 app.use(cookieParser());
@@ -35,14 +35,15 @@ app.use(cookieParser());
 app.use("/", require("./routes/globals"));
 app.use("/auth", require("./routes/auth"));
 app.use("/refresh", require("./routes/refresh"));
+
 app.use(verifyJWT);
 app.use("/pizzas", require("./routes/pizzas"));
 app.use("/actus", require("./routes/actus"));
 app.use("/contact", require("./routes/contacts"));
 app.use("/profile", require("./routes/profiles"));
 
-app.use(function (req, res, next) {
-  var err = new Error("Not Found");
+app.use((req, res, next) => {
+  const err = new Error("Not Found");
   err.status = 404;
   next(err);
 });

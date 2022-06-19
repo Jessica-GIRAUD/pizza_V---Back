@@ -9,6 +9,7 @@ const config = {
   user: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME,
+  multipleStatements: true,
 };
 const connection = mysql.createPool(config);
 

@@ -53,36 +53,36 @@ const updateProfile = (req, res) => {
               return res.status(401).send({
                 message: "Votre mot de passe initial est incorrect.",
               });
-            } else if (newPassword !== confirmedPassword) {
+            }
+            if (newPassword !== confirmedPassword) {
               return res.status(409).send({
                 message: "Les nouveaux mots de passe doivent être identiques.",
               });
-            } else {
-              const query = `UPDATE users SET firstname = ?, lastname = ?, email = ?, passwordHash = ? WHERE id = ?`;
-              connection.query(
-                query,
-                [firstname, lastname, email, hashedPassword, id],
-                (err, result) => {
-                  if (err) {
-                    console.log(req.method, req.originalUrl, err.message);
-                    res
-                      .status(500)
-                      .send(
-                        "Une erreur est survenue lors de la modification du profil, contactez votre administrateur."
-                      );
-                  }
-                  if (result) {
-                    connection.query(
-                      "SELECT id, firstname, lastname, email FROM users",
-                      [],
-                      (err, result) => {
-                        res.status(200).send(result);
-                      }
-                    );
-                  }
-                }
-              );
             }
+            const query = `UPDATE users SET firstname = ?, lastname = ?, email = ?, passwordHash = ? WHERE id = ?`;
+            connection.query(
+              query,
+              [firstname, lastname, email, hashedPassword, id],
+              (err, result) => {
+                if (err) {
+                  console.log(req.method, req.originalUrl, err.message);
+                  res
+                    .status(500)
+                    .send(
+                      "Une erreur est survenue lors de la modification du profil, contactez votre administrateur."
+                    );
+                }
+                if (result) {
+                  connection.query(
+                    "SELECT id, firstname, lastname, email FROM users",
+                    [],
+                    (err, result) => {
+                      res.status(200).send(result);
+                    }
+                  );
+                }
+              }
+            );
           });
       } else if (result) {
         const query = `UPDATE users SET firstname = ?, lastname = ?, email = ? WHERE id = ?`;

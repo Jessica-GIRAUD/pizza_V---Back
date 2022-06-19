@@ -1,10 +1,11 @@
 const express = require("express");
+
 const router = express.Router();
 const {
   createPizza,
   updatePizza,
   deletePizza,
-  getPizza
+  getPizza,
 } = require("../controllers/pizza");
 
 router.post("/create", createPizza);

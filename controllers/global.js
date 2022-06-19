@@ -1,19 +1,35 @@
 const connection = require("../db");
 
 const getAllContacts = (req, res) => {
-  connection.query("SELECT * FROM contact", [], (err, result) => {
-    if (err) {
-      console.log(err);
-      res
-        .status(500)
-        .send(
-          "Une erreur est survenue lors de la récupération des contacts, contactez votre administrateur."
-        );
+  connection.query(
+    "SELECT jour, horaire FROM horaires;",
+    [],
+    (error, horaires) => {
+      if (error) {
+        console.log(error);
+        res
+          .status(500)
+          .send(
+            "Une erreur est survenue lors de la récupération des horaires."
+          );
+      }
+      if (horaires) {
+        const query = "SELECT * FROM contact WHERE id = 1 ";
+        connection.query(query, [], (err, contact) => {
+          if (err) {
+            console.log(err);
+            res
+              .status(500)
+              .send(
+                "Une erreur est survenue lors de la récupération du contact."
+              );
+          }
+
+          return res.status(200).send({ ...contact[0], horaires });
+        });
+      }
     }
-    if (result) {
-      return res.status(200).json(result);
-    }
-  });
+  );
 };
 
 const getAllPizzas = (req, res) => {
@@ -28,9 +44,7 @@ const getAllPizzas = (req, res) => {
           "Une erreur est survenue lors de la récupération des pizzas, contactez votre administrateur."
         );
     }
-    if (result) {
-      return res.status(200).json(result);
-    }
+    return res.status(200).json(result);
   });
 };
 
@@ -48,9 +62,7 @@ const getAllActus = (req, res) => {
             "Une erreur est survenue lors de la récupération des actualités, contactez votre administrateur."
           );
       }
-      if (result) {
-        return res.status(200).json(result);
-      }
+      return res.status(200).json(result);
     }
   );
 };
