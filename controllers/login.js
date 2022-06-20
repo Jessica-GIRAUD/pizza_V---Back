@@ -51,7 +51,6 @@ const login = async (req, res) => {
           httpOnly: true,
           sameSite: "none",
           secure: true,
-          domain: "https://pizza-kika-v2.netlify.app",
         });
 
         // send access token to front end
