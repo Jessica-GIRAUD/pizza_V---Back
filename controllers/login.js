@@ -49,6 +49,9 @@ const login = async (req, res) => {
         res.cookie("token", refreshedToken, {
           maxAge: 24 * 60 * 60 * 1000,
           httpOnly: true,
+          sameSite: "none",
+          secure: true,
+          domain: "https://pizza-kika-v2.netlify.app",
         });
 
         // send access token to front end
