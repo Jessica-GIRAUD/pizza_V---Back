@@ -1,15 +1,16 @@
 const { verify, sign } = require("jsonwebtoken");
 const connection = require("../db");
+
 const { REFRESH_KEY, SECRET_KEY } = process.env;
 
 const refreshToken = (req, res) => {
-  const cookies = req.cookies;
+  const { cookies } = req;
   if (!cookies.token) return res.sendStatus(401);
-  const refreshToken = cookies.token;
+  const refreshedToken = cookies.token;
 
   connection.query(
     "SELECT * FROM users WHERE refreshToken = ?;",
-    [refreshToken],
+    [refreshedToken],
     (err, result) => {
       if (result) {
         const user = result[0];
