@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 const { verifyJWT } = require("./middlewares/jwt");
 
 const { PORT } = process.env;
+app.set("trust proxy", 1);
 
 app.use(
   cors({
