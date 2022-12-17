@@ -1,5 +1,5 @@
-const connection = require("../db");
 const bcrypt = require("bcrypt");
+const connection = require("../db");
 
 // get profile by id
 const getProfile = (req, res) => {
