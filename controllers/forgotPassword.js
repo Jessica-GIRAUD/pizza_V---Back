@@ -1,6 +1,7 @@
-const connection = require("../db");
 const { sign } = require("jsonwebtoken");
+const connection = require("../db");
 const sendEmail = require("./sendMail");
+
 const { RESET_KEY } = process.env;
 
 const forgotPassword = (req, res) => {
@@ -12,6 +13,7 @@ const forgotPassword = (req, res) => {
     [email],
     async (err, results) => {
       if (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
         res.status(500).send({ message: err.message });
       }

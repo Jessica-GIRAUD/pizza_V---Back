@@ -6,6 +6,7 @@ const getAllContacts = (req, res) => {
     [],
     (error, horaires) => {
       if (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
         res
           .status(500)
@@ -17,6 +18,7 @@ const getAllContacts = (req, res) => {
         const query = "SELECT * FROM contact WHERE id = 1 ";
         connection.query(query, [], (err, contact) => {
           if (err) {
+            // eslint-disable-next-line no-console
             console.log(err);
             res
               .status(500)
@@ -37,6 +39,7 @@ const getAllPizzas = (req, res) => {
     "SELECT p.id, p.name, p.description, p.price, base.name AS base_name FROM pizza p LEFT JOIN base ON base_id = base.id";
   connection.query(query, [], (err, result) => {
     if (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
       res
         .status(500)
@@ -55,6 +58,7 @@ const getAllActus = (req, res) => {
     [],
     (err, result) => {
       if (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
         res
           .status(500)
