@@ -9,7 +9,11 @@ const createPizza = async (req, res) => {
   connection.query(query, [], (err, result) => {
     if (err) {
       console.log(req.method, req.originalUrl, err.message);
-      res.status(500).send("Error while creating pizzas");
+      res
+        .status(500)
+        .send(
+          "Une erreur est survenue lors de la création d'une pizza, contactez votre administrateur."
+        );
     }
     if (result) {
       connection.query(
@@ -31,7 +35,11 @@ const getPizza = (req, res) => {
   connection.query(query, [id], (err, result) => {
     if (err) {
       console.log(err);
-      res.status(500).send("Error while getting pizzas");
+      res
+        .status(500)
+        .send(
+          "Une erreur est survenue lors de la récupération des pizzas, contactez votre administrateur."
+        );
     }
     if (result) {
       return res.status(200).json(result);
@@ -53,7 +61,9 @@ const updatePizza = (req, res) => {
       console.log(req.method, req.originalUrl, err.message);
       res
         .status(500)
-        .send("Une erreur est survenue lors de la modification de la pizza");
+        .send(
+          "Une erreur est survenue lors de la modification de la pizza, contactez votre administrateur."
+        );
     }
     if (result) {
       connection.query(
@@ -74,7 +84,11 @@ const deletePizza = (req, res) => {
   connection.query(query, [pizza_id], (err, result) => {
     if (err) {
       console.log(req.method, req.originalUrl, err.message);
-      res.status(500).send("Error while deleting pizza");
+      res
+        .status(500)
+        .send(
+          "Une erreur est survenue lors de la suppression de la pizza, contactez votre administrateur."
+        );
     }
     if (result) {
       connection.query(

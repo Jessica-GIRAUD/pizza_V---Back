@@ -1,7 +1,7 @@
 const connection = require("../db");
 
 const logout = async (req, res) => {
-  const cookies = req.cookies;
+  const { cookies } = req;
   if (!cookies.token) return res.sendStatus(204); // No content to send back
   const refreshToken = cookies.token;
 

@@ -39,7 +39,7 @@ const register = (req, res) => {
               console.log("error:", error);
               return res.status(500).send({
                 message:
-                  "Un problème est survenu, contactez votre administrateur.",
+                  "Un problème est survenu lors de la modification du compte, contactez votre administrateur.",
               });
             }
             return res.status(200).send("Votre compte a bien été modifié");

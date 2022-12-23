@@ -1,12 +1,12 @@
 const connection = require("../db");
 
-const getAllQuery = "SELECT * FROM actualites";
+const getAllQuery = "SELECT * FROM actualites;";
 
 // create actu
 const createActu = async (req, res) => {
   const { name, description, priority } = req.body;
-  const query =
-    "INSERT INTO actualites (name, description, priority) VALUES (?, ?, ?);";
+  const query = `INSERT INTO actualites (name, description, priority) VALUES (?, ?, ?);`;
+
   connection.query(query, [name, description, priority], (err, result) => {
     if (err) {
       console.log(req.method, req.originalUrl, err.message);
@@ -15,8 +15,8 @@ const createActu = async (req, res) => {
         .send("Une erreur est survenue lors de la création de l'actualité");
     }
     if (result) {
-      connection.query(getAllQuery, [], (err, result) => {
-        res.status(200).send(result);
+      connection.query(getAllQuery, [], (error, actu) => {
+        res.status(200).send(actu);
       });
     }
   });
@@ -44,14 +44,14 @@ const updateActu = (req, res) => {
   const actu_id = req.params.id;
   const query = `UPDATE actualites SET ? WHERE id = ?`;
 
-  connection.query(query, [req.body, actu_id], (err, result) => {
-    if (err) {
-      console.log(req.method, req.originalUrl, err.message);
+  connection.query(query, [req.body, actu_id], (error, results) => {
+    if (error) {
+      console.log(req.method, req.originalUrl, error.message);
       res
         .status(500)
         .send("Une erreur est survenue lors de la modification de l'actualité");
     }
-    if (result) {
+    if (results) {
       connection.query(getAllQuery, [], (err, result) => {
         res.status(200).send(result);
       });
@@ -71,8 +71,8 @@ const deleteActu = (req, res) => {
         .send("Une erreur est survenue lors de la suppression de l'actualité");
     }
     if (result) {
-      connection.query(getAllQuery, [], (err, result) => {
-        res.status(200).send(result);
+      connection.query(getAllQuery, [], (error, results) => {
+        res.status(200).send(results);
       });
     }
   });

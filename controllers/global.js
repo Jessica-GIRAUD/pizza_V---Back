@@ -1,17 +1,37 @@
 const connection = require("../db");
 
 const getAllContacts = (req, res) => {
-  connection.query("SELECT * FROM contact", [], (err, result) => {
-    if (err) {
-      console.log(err);
-      res
-        .status(500)
-        .send("Une erreur est survenue lors de la récupération des contacts");
+  connection.query(
+    "SELECT jour, horaire FROM horaires;",
+    [],
+    (error, horaires) => {
+      if (error) {
+        // eslint-disable-next-line no-console
+        console.log(error);
+        res
+          .status(500)
+          .send(
+            "Une erreur est survenue lors de la récupération des horaires."
+          );
+      }
+      if (horaires) {
+        const query = "SELECT * FROM contact WHERE id = 1 ";
+        connection.query(query, [], (err, contact) => {
+          if (err) {
+            // eslint-disable-next-line no-console
+            console.log(err);
+            res
+              .status(500)
+              .send(
+                "Une erreur est survenue lors de la récupération du contact."
+              );
+          }
+
+          return res.status(200).send({ ...contact[0], horaires });
+        });
+      }
     }
-    if (result) {
-      return res.status(200).json(result);
-    }
-  });
+  );
 };
 
 const getAllPizzas = (req, res) => {
@@ -19,12 +39,15 @@ const getAllPizzas = (req, res) => {
     "SELECT p.id, p.name, p.description, p.price, base.name AS base_name FROM pizza p LEFT JOIN base ON base_id = base.id";
   connection.query(query, [], (err, result) => {
     if (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
-      res.status(500).send("Error while getting pizzas");
+      res
+        .status(500)
+        .send(
+          "Une erreur est survenue lors de la récupération des pizzas, contactez votre administrateur."
+        );
     }
-    if (result) {
-      return res.status(200).json(result);
-    }
+    return res.status(200).json(result);
   });
 };
 
@@ -35,22 +58,26 @@ const getAllActus = (req, res) => {
     [],
     (err, result) => {
       if (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
         res
           .status(500)
           .send(
-            "Une erreur est survenue lors de la récupération des actualités"
+            "Une erreur est survenue lors de la récupération des actualités, contactez votre administrateur."
           );
       }
-      if (result) {
-        return res.status(200).json(result);
-      }
+      return res.status(200).json(result);
     }
   );
+};
+
+const getWelcome = (req, res) => {
+  res.send("Bienvenue sur le serveur du site de Pizza Kika !");
 };
 
 module.exports = {
   getAllContacts,
   getAllPizzas,
   getAllActus,
+  getWelcome,
 };
