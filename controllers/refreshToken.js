@@ -17,9 +17,9 @@ const refreshToken = (req, res) => {
 
         if (!user) return res.sendStatus(403); // Forbidden
 
-        verify(refreshToken, REFRESH_KEY, (err, decoded) => {
+        verify(refreshedToken, REFRESH_KEY, (error, decoded) => {
           if (err || user.email !== decoded.user)
-            return res.status(403).send(err);
+            return res.status(403).send(error);
           const accessToken = sign({ user: decoded.email }, SECRET_KEY, {
             expiresIn: "1h",
           });
